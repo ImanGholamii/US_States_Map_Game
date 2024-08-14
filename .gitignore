@@ -1,0 +1,4 @@
+.venv/*
+.Pandas/*
+.idea/*
+*__pycache__/*
