@@ -1,11 +1,14 @@
 import turtle
 import pandas as pd
+from state import State
 
 screen = turtle.Screen()
 screen.title("U.S. States Game")
 image = "blank_states_img.gif"
 screen.addshape(image)  # path of image
 turtle.shape(image)
+
+state = State()
 
 
 def make_question():
@@ -29,13 +32,16 @@ def take_position(user_input):
     filtered_data = data[data.state == user_input]
     x_coord = int(filtered_data.x)
     y_coord = int(filtered_data.y)
-    coordinates = (x_coord, y_coord)
-    return coordinates
+    coord = (x_coord, y_coord)
+    return coord
 
 
-game_is_on = False
+game_is_on = True
 while game_is_on:
     state_name = make_question()
-    check_answer(user_input=state_name)
+    if check_answer(user_input=state_name):
+        coordinates = take_position(user_input=state_name)
+        state.move(coordinates)
+        state.show_state_name(state_name=state_name)
 
 screen.exitonclick()
