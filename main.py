@@ -1,7 +1,6 @@
 import turtle
 import pandas as pd
 from state import State
-from scoreboard import Scoreboard
 
 screen = turtle.Screen()
 screen.title("U.S. States Game")
@@ -10,7 +9,6 @@ screen.addshape(image)  # path of image
 turtle.shape(image)
 
 state = State()
-scoreboard = Scoreboard()
 current_score = 0
 
 
@@ -50,7 +48,5 @@ while game_is_on:
         coordinates = take_position(user_input=state_name)
         state.move(coordinates)
         state.show_state_name(state_name=state_name)
-    if current_score == 50:
+    if current_score == 50 or state_name == "Exit":
         game_is_on = False
-
-screen.exitonclick()
