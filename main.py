@@ -13,6 +13,7 @@ state = State()
 scoreboard = Scoreboard()
 current_score = 0
 
+
 def make_question():
     """Ask user state guess"""
     user_input = screen.textinput(title=f"{current_score}/50 States name", prompt="What's another state name?")
@@ -32,8 +33,8 @@ def check_answer(user_input):
 def take_position(user_input):
     """Extract x, y coordinate from data file"""
     filtered_data = data[data.state == user_input]
-    x_coord = int(filtered_data.x)
-    y_coord = int(filtered_data.y)
+    x_coord = int(filtered_data.x.iloc[0])
+    y_coord = int(filtered_data.y.iloc[0])
     coord = (x_coord, y_coord)
     return coord
 
