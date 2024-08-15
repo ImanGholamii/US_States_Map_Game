@@ -16,7 +16,8 @@ current_score = 0
 
 def make_question():
     """Ask user state guess"""
-    user_input = screen.textinput(title=f"{current_score}/50 States name", prompt="What's another state name? 🗺️ \n\nYou can type 'Exit' to safe stop...⚠️ ")
+    user_input = screen.textinput(title=f"{current_score}/50 States name",
+                                  prompt="What's another state name? 🗺️ \n\nYou can type 'Exit' to safe stop...⚠️ ")
     return user_input.title()
 
 
@@ -60,4 +61,3 @@ while game_is_on:
 
         learn_df = pd.DataFrame(learn_list, columns=["state"])
         learn_df.to_csv("states_to_learn.csv", index=False)
-
