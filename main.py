@@ -44,14 +44,14 @@ mentioned_countries = []
 game_is_on = True
 while game_is_on:
     state_name = make_question()
-    if check_answer(user_input=state_name):
+    if check_answer(user_input=state_name) and state_name != '':
         mentioned_countries.append(state_name)
         current_score = len(mentioned_countries)
         print(mentioned_countries)
         coordinates = take_position(user_input=state_name)
         state.move(coordinates)
         state.show_state_name(state_name=state_name)
-    if current_score == 50 or state_name == "Exit":
+    if current_score == 50 or state_name == "Exit" or state_name == '':
         game_is_on = False
         # show remained countries to learning goals
         learn_list = []
