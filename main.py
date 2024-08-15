@@ -1,5 +1,7 @@
 import turtle
+
 import pandas as pd
+
 from state import State
 
 screen = turtle.Screen()
@@ -14,7 +16,7 @@ current_score = 0
 
 def make_question():
     """Ask user state guess"""
-    user_input = screen.textinput(title=f"{current_score}/50 States name", prompt="What's another state name?")
+    user_input = screen.textinput(title=f"{current_score}/50 States name", prompt="What's another state name? 🗺️ \n\nYou can type 'Exit' to safe stop...⚠️ ")
     return user_input.title()
 
 
@@ -50,3 +52,12 @@ while game_is_on:
         state.show_state_name(state_name=state_name)
     if current_score == 50 or state_name == "Exit":
         game_is_on = False
+        # show remained countries to learning goals
+        learn_list = []
+        for item in data.state:
+            if item not in mentioned_countries:
+                learn_list.append(item)
+
+        learn_df = pd.DataFrame(learn_list, columns=["state"])
+        learn_df.to_csv("states_to_learn.csv", index=False)
+
