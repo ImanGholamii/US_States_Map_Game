@@ -1,6 +1,7 @@
 import turtle
 import pandas as pd
 from state import State
+from scoreboard import Scoreboard
 
 screen = turtle.Screen()
 screen.title("U.S. States Game")
@@ -9,11 +10,12 @@ screen.addshape(image)  # path of image
 turtle.shape(image)
 
 state = State()
-
+scoreboard = Scoreboard()
+current_score = 0
 
 def make_question():
     """Ask user state guess"""
-    user_input = screen.textinput(title="Guess states name", prompt="What's another state name?")
+    user_input = screen.textinput(title=f"{current_score}/50 States name", prompt="What's another state name?")
     return user_input.title()
 
 
@@ -36,10 +38,14 @@ def take_position(user_input):
     return coord
 
 
+mentioned_countries = []
 game_is_on = True
 while game_is_on:
     state_name = make_question()
     if check_answer(user_input=state_name):
+        mentioned_countries.append(state_name)
+        current_score = len(mentioned_countries)
+        print(mentioned_countries)
         coordinates = take_position(user_input=state_name)
         state.move(coordinates)
         state.show_state_name(state_name=state_name)
