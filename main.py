@@ -50,5 +50,7 @@ while game_is_on:
         coordinates = take_position(user_input=state_name)
         state.move(coordinates)
         state.show_state_name(state_name=state_name)
+    if current_score == 50:
+        game_is_on = False
 
 screen.exitonclick()
