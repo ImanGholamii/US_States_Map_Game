@@ -54,10 +54,6 @@ while game_is_on:
     if current_score == 50 or state_name == "Exit" or state_name == '':
         game_is_on = False
         # show remained countries to learning goals
-        learn_list = []
-        for item in data.state:
-            if item not in mentioned_countries:
-                learn_list.append(item)
-
+        learn_list = [state for state in data.state if state not in mentioned_countries]
         learn_df = pd.DataFrame(learn_list, columns=["state"])
         learn_df.to_csv("states_to_learn.csv", index=False)
